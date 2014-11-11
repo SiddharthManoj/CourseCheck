@@ -123,3 +123,9 @@ Priority queue to determine the order and time each email is sent. We'd have to 
 Server finds new openings for a class -> sends email to all watching users who are premium -> (5 minute wait) sends email to first free user -> (5 minute wait) sends email to second free user -> etc
 
 Maybe I'm not understanding this completely, but how would the priority queue differ from instant results, since they both involve emails being sent out at different rates depending on money being spent? Overall, while the price should be low, it shouln't be low enough so that most people have no problem buying it and then the premium option becomes the standard. - GO
+
+The paying users receive an email as soon as the server knows that there are new openings in a class they care about. The 5 minute delay has nothing to do with the 5-minute polling frequency of the loop.
+
+If the loop checked for new classes every 10 seconds, or constantly, then the sending schedule would still look like
+
+Server finds new openings for a class -> sends email to all watching users who are premium -> (5 minute wait) sends email to first free user -> (5 minute wait) sends email to second free user -> etc - WA
