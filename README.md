@@ -45,6 +45,9 @@ Might be doable using some SG API; otherwise we could just use a PHP script with
 
 I *think* we can do this using the email-to-SMS features that most cell providers offer (e.g. `5555555555@vtext.com`. This would require figuring out which provider owns a given number.
 
+(http://www.digitaltrends.com/mobile/how-to-send-e-mail-to-sms-text/)
+(http://martinfitzpatrick.name/list-of-email-to-sms-gateways/)
+
 #### Live suggestion search bar with additional parameters instead of just dept. and id (this would be good so users don't have to lookup ID on web reg site)
 
 ## Fixes
@@ -75,6 +78,8 @@ Playing a sound notification should be easy from what I can see:
 
 #### 12 hour time instead of military time on class rectangle
 
+(http://stackoverflow.com/a/14415768)
+
 ## Other
 
 #### About/info page and help page
@@ -83,6 +88,15 @@ Playing a sound notification should be easy from what I can see:
 Things the logo {c,sh}ould incorporate: registration, adding, watching, updating. Two C's mean some interesting ways to incorporate letters if we want to. - WA
 
 #### Snazzy pastel-ized cardinal and gold color theme
+
+Some nice-looking possible colors
+#E65B5E
+#F8CA8C
+#FA7E73
+
+#### Nicer looking JS alerts
+
+(http://tristanedwards.me/sweetalert)
 
 #### For serious testing we could have the site check local JSON files that we will deliberately change to verify the changes on the site are correct
 
