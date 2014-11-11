@@ -6,13 +6,13 @@
 
 3. Add the following entry to your `~/.ssh/config`:
 
-```
-Host coursecheck.me_admin
-	HostName coursecheck.me
-	IdentitiesOnly yes
-	IdentityFile ~/.ssh/id_rsa_coursecheck.me_admin
-	user admin
-```
+	```
+	Host coursecheck.me_admin
+		HostName coursecheck.me
+		IdentitiesOnly yes
+		IdentityFile ~/.ssh/id_rsa_coursecheck.me_admin
+		user admin
+	```
 
 4. Run `ssh-keygen` on your computer to generate a new SSH key pair. Call it `id_rsa_coursecheck.me_github`.
 
