@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script>
+			window.onload = function() {
+				document.getElementById("login-button").addEventListener("click", login);
+				document.getElementById("register-button").addEventListener("click", showRegisterControls);
+				document.getElementById("submit-button").addEventListener("click", register);
+				document.getElementById("search-button").addEventListener("click", search);
+				document.getElementById("search-button").addEventListener("click", classes);
+				document.getElementById("logout").addEventListener("click", logout);
+				setListeners();
+				testLogin();
+			};
+
+			function setListeners() {
+				var targets = document.getElementsByTagName("input");
+
+				for (var i = 0; i < targets.length; ++i) {
+					targets[i].addEventListener("focus", inputHighlight);
+					targets[i].addEventListener("blur", inputHighlight);
+				}
+			};
+
+			function showRegisterControls() {
+				document.getElementById("login").classList.add("hidden");
+				document.getElementById("register").classList.remove("hidden");
+			}
+
+			function inputHighlight(e) {
+				if (e.srcElement.classList.contains("open")) {
+					e.srcElement.classList.remove("open");
+				} else {
+					e.srcElement.classList.add("open");
+				}
+			}
+
+			function logout() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET", "/php/logout.php", true);
+		
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						document.getElementById("postlogin").classList.add("hidden");
+						document.getElementById("register").classList.add("hidden");
+						document.getElementById("login").classList.remove("hidden");
+					}
+				};
+
+				xmlhttp.send();
+			}
+
+			function register() {
+				var un = document.getElementById("un-register").value;
+				var pwd = document.getElementById("pwd-register").value;
+				
+				if (pwd != document.getElementById("pwd-verify").value) {
+					alert("Passwords do not match!");
+					return;
+				}
+
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("POST", "/php/register.php", true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						if (xmlhttp.responseText == "") {
+							alert("Registration successful!");
+							document.getElementById("login").classList.remove("hidden");
+							document.getElementById("register").classList.add("hidden");
+						} else {
+							alert(xmlhttp.responseText);
+						}
+					}
+				};
+
+				xmlhttp.send("un=" + encodeURIComponent(un) + "&pwd=" + encodeURIComponent(pwd));
+			}
+
+			function login() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("POST", "/php/login.php", true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						if (xmlhttp.responseText == "_SUCCESS") {
+							document.getElementById("login").classList.add("hidden");
+							document.getElementById("postlogin").classList.remove("hidden");
+							classes();
+						} else {
+							alert(xmlhttp.responseText);
+						}
+					}
+				};
+
+				xmlhttp.send("un=" + encodeURIComponent(document.getElementById("un-login").value) + "&pwd=" + encodeURIComponent(document.getElementById("pwd-login").value));
+			}
+
+			function search() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("POST", "/php/search.php", true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						if (xmlhttp.responseText == "_SUCCESS") {
+							classes();
+						} else {
+							console.log(xmlhttp.responseText);
+						}
+					}
+				};
+
+				xmlhttp.send("dept=" + encodeURIComponent(document.getElementById("dept").value) + "&section=" + encodeURIComponent(document.getElementById("section").value));
+			}
+
+			function classes() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET", "/php/classes.php", true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						if (xmlhttp.responseText != "_FAILURE") {
+							while (document.getElementById("classes").firstChild) {
+								document.getElementById("classes").removeChild(document.getElementById("classes").firstChild);
+							}
+							appendClasses(xmlhttp.responseText);
+						}
+					}
+				};
+
+				xmlhttp.send();
+			}
+
+			function testLogin() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET", "/php/classes.php", true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						if (xmlhttp.responseText != "_FAILURE") {
+							document.getElementById("login").classList.add("hidden");
+							document.getElementById("postlogin").classList.remove("hidden");
+							appendClasses(xmlhttp.responseText);
+						}
+					}
+				};
+
+				xmlhttp.send();
+			}
+
+			function appendClasses(data) {
+				var obj = JSON.parse(data);
+
+				for (var i = 0; i < obj.length; i++) {
+					var div = document.createElement("div");
+					div.classList.add("class");
+					var text = document.createTextNode(obj[i]["section"]);
+
+					var infoDiv = document.createElement("div");
+					infoDiv.classList.add("left");
+					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + obj[i]["start"] + " - " + obj[i]["end"];
+
+
+					var avail = parseInt(obj[i]["seats"]) - parseInt(obj[i]["taken"]);
+					var availDiv = document.createElement("div");
+					availDiv.classList.add("avail");
+					var text = document.createTextNode(avail);
+					availDiv.appendChild(text);
+					div.appendChild(infoDiv);
+					div.appendChild(availDiv);
+
+					var fixDiv = document.createElement("div");
+					fixDiv.classList.add("fix");
+					div.appendChild(fixDiv);
+
+					document.getElementById("classes").appendChild(div);
+				}
+			}
+		</script>
+		<style>
+			body {
+				font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+				max-width: 600px;
+				margin: auto;
+			}
+
+			#logout {
+				text-align: center;
+				width: 100%;
+				cursor: pointer;
+			}
+
+			.button {
+				font-weight: bold;
+			}
+
+			.input {
+				width: 100%;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+
+			.open, .input:hover {
+				background: #f0f0f0;
+			}
+
+			.hidden {
+				display: none;
+			}
+
+			input[type="text"], input[type="password"] {
+				border: none;
+				display: inline-block;
+				outline: none;
+				font-family: inherit;
+				font-size: inherit;
+				display: inline-block;
+			}
+
+			.button {
+				cursor: pointer;
+				text-align: center;
+				font-family: Helvetica Neue;
+				user-select: none;
+				-webkit-user-select: none;
+			}
+
+			.class {
+				background-color: #f0f0f0;
+				padding: 20px;
+				margin: 10px;
+				box-sizing: border-box;
+			}
+
+			.class .avail {
+				float: right;
+				font-size: 30px;
+				display: table;
+			}
+
+			.class .avail .inner {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.class .left {
+				float: left;
+			}
+
+			.fix {
+				clear: both;
+			}
+		</style>
+		<title>
+			CourseCheck
+		</title>
+	</head>
+	<body>
+		<h1 id="logout">CourseCheck</h1>
+		<div id="login">
+			<input id="un-login" class="input" type="text" placeholder="Email">
+			<input id="pwd-login" class="input" type="password" placeholder="Password">
+			<div id="login-button" class="button input">Login</div>
+			<div id="register-button" class="button input">Register</div>
+		</div>
+		<div id="register" class="hidden">
+			<input id="un-register" class="input" type="text" placeholder="Email">
+			<input id="pwd-register" class="password input" type="password" placeholder="Password">
+			<input id="pwd-verify" class="password input" type="password" placeholder="Verify password">
+			<div id="submit-button" class="button input">Submit</div>
+		</div>
+		<div id="postlogin" class="hidden">
+			<input id="dept" class="input" type="text" placeholder="Department (e.g. csci)">
+			<input id="section" class="input" type="text" placeholder="Section number (e.g. 29919)">
+			<div id="search-button" class="button input">Search</div>
+			<div id="classes"></div>
+		</div>
+	</body>
+</html>
