@@ -89,10 +89,10 @@ Things the logo {c,sh}ould incorporate: registration, adding, watching, updating
 
 #### Snazzy pastel-ized cardinal and gold color theme
 
-Some nice-looking possible colors
-#E65B5E
-#F8CA8C
-#FA7E73
+Some nice-looking possible colors  
+"#E65B5E"  
+"#F8CA8C"  
+"#FA7E73"
 
 #### Nicer looking JS alerts
 
