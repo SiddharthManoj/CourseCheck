@@ -95,10 +95,10 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 
 #### Search Engine Optimization tactics
 
-About page  
-SSL certificate  
-Get mentioned on other sites (Daily Trojan, ACM)  
-Spread the word on Twitter, Facebook
+* About page  
+* SSL certificate  
+* Get mentioned on other sites (Daily Trojan, ACM)  
+* Spread the word on Twitter, Facebook
 
 #### Scale up as we get more users
 
