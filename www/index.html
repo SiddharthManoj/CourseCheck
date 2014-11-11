@@ -5,17 +5,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script>
 			window.onload = function() {
-				document.getElementById("login-button").addEventListener("click", login);
+				addClickEnterListener(document.getElementById("pwd-login"), document.getElementById("login-button"), login);
 				document.getElementById("register-button").addEventListener("click", showRegisterControls);
-				document.getElementById("submit-button").addEventListener("click", register);
-				document.getElementById("search-button").addEventListener("click", search);
+				addClickEnterListener(document.getElementById("pwd-verify"), document.getElementById("submit-button"), register);
+
+				addClickEnterListener(document.getElementById("section"), document.getElementById("search-button"), search)
 				document.getElementById("search-button").addEventListener("click", classes);
 				document.getElementById("logout").addEventListener("click", logout);
-				setListeners();
+				setInputListeners();
 				testLogin();
 			};
 
-			function setListeners() {
+			function setInputListeners() {
 				var targets = document.getElementsByTagName("input");
 
 				for (var i = 0; i < targets.length; ++i) {
@@ -23,6 +24,11 @@
 					targets[i].addEventListener("blur", inputHighlight);
 				}
 			};
+
+			function addClickEnterListener(field, button, f) {
+				field.addEventListener("keydown", f);
+				button.addEventListener("click", f);
+			}
 
 			function showRegisterControls() {
 				document.getElementById("login").classList.add("hidden");
@@ -53,6 +59,8 @@
 			}
 
 			function register() {
+				if (event.type == "keydown" && event.keyCode != 13) return;
+
 				var un = document.getElementById("un-register").value;
 				var pwd = document.getElementById("pwd-register").value;
 				
@@ -81,6 +89,8 @@
 			}
 
 			function login() {
+				if (event.type == "keydown" && event.keyCode != 13) return;
+
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/login.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -101,6 +111,8 @@
 			}
 
 			function search() {
+				if (event.type == "keydown" && event.keyCode != 13) return;
+
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/search.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
