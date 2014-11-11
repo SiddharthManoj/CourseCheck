@@ -14,7 +14,7 @@ Host coursecheck.me_admin
 	user admin
 ```
 
-4 Run `ssh-keygen` on your computer to generate a new SSH key pair. Call it `id_rsa_coursecheck.me_github`.
+4. Run `ssh-keygen` on your computer to generate a new SSH key pair. Call it `id_rsa_coursecheck.me_github`.
 
 5. Add the key to your GitHub account (copy the contents of `id_rsa_coursecheck.me_github.pub` to the text area in the prompt on the website). I recommend giving it a title like `coursecheck.me` so you can distinguish it from your default key in the future.
 
