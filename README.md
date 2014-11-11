@@ -39,21 +39,13 @@ I tried it without being logged in and was directed to the link I posted, which 
 
 Might be doable using some SG API; otherwise we could just use a PHP script with the SGPHP stuff. - WA
 
-#### Customer support functionality through email or some other means
-
-Yeah, could just set up admin@coursecheck.me or webmaster@coursecheck.me. Would require setting up Postfix and Dovecot which I could do in the future. - WA
-
-As long as we all have access to it then we can all share the workload of handling user's emails. - GO
+#### Set up admin@coursecheck.me or webmaster@coursecheck.me for customer support. Would require setting up Postfix and Dovecot. Make sure we all have access to email.
 
 #### Text message alerts instead of or in addition to email
 
-I *think* we can do this using the email-to-SMS features that most cell providers offer (e.g. `5555555555@vtext.com`. This would require figuring out which provider owns a given number. But this would be much more elegant and cheaper than fucking around with some startup's "revolutionary" API. - WA
+I *think* we can do this using the email-to-SMS features that most cell providers offer (e.g. `5555555555@vtext.com`. This would require figuring out which provider owns a given number.
 
 #### Live suggestion search bar with additional parameters instead of just dept. and id (this would be good so users don't have to lookup ID on web reg site)
-
-#### While we could stil do something along the lines of a queue with regards to the emailing, we could instead monetize a bit and charge users who want faster results, which on our end would just be sleeping the loop less than normal.
-
-Moved this to a new section in General since monetization is a pretty discussion-worthy topic (but certainly not what's motivating us of course) - GO
 
 ## Fixes
 
@@ -73,11 +65,15 @@ Going a little further, it might be a good idea to have a notification sound pla
 
 Okay, we could do that with a JS loop on the page and add something into the DB about whether a new update is waiting for each user's sections.
 
+Playing a sound notification should be easy from what I can see:
+(http://stackoverflow.com/a/9419328)
+(http://www.w3schools.com/html/html5_audio.asp)
+
 #### More complete class section info in rectangle
 
 #### Identify any remaining class recognition errors apart of the Schedule of Classes API
 
-#### 12 hour time instead of military time
+#### 12 hour time instead of military time on class rectangle
 
 ## Other
 
@@ -99,20 +95,12 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 
 #### Search Engine Optimization tactics
 
-About page  
-SSL certificate  
-Get mentioned on other sites (Daily Trojan, ACM)  
+About page
+SSL certificate
+Get mentioned on other sites (Daily Trojan, ACM)
 Spread the word on Twitter, Facebook
 
-#### Do we have to worry about scalability?
-
-In terms of server beefiness? Yes, our $5 VPS won't cut it, probably, and we'll want to scale up at some point if this actually gets any momentum. - WA
-
-#### In terms of professionalism, do we want to have a "team" github to store this?
-
-Yes, as above. I'll get a more official, team, private repo set up. - WA
-
-Lots of developments (NPI) here, check the GroupMe chat
+#### Scale up as we get more users
 
 #### Monetization ideas (consider the toll these would take on the server, etc.)
 
