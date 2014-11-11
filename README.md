@@ -22,6 +22,8 @@ I'm not sure about filling the page with lots of different colors. If we use a l
 
 I agree. I do think their should be some differentiator between the class rectangles to some extent. Not too much to overwhelm the user of course. - GO
 
+What about a tint reflecting how recently the seats opened up? So the rectangles would get progressively darker at varying steps. We could do something where maybe a week ago is the darkest and a minute ago is the brightest and do a log scale between them. - WA
+
 #### Have each class rectangle link to web registration page so users can log in quickly
 
 Good idea. URL scheme is e.g. `https://camel2.usc.edu/webreg/crsesoffrd.asp?COURSE=CSCI-103&TERM=20151&DEPT=CSCI`. We should make sure that this path is preserved even if the user has to go through the Shib authentication page. - WA
@@ -29,11 +31,15 @@ Good idea. URL scheme is e.g. `https://camel2.usc.edu/webreg/crsesoffrd.asp?COUR
 That could be pretty difficult, but surely possible. In the meantime we could just have it link to here:
 "https://camel2.usc.edu/webreg/Login.asp". - GO
 
+I'm currentl going through hell with my USC account because the web registration made me reset my pin and asked for an 8-character password, but the prompt only allows 6. Could someone see if the link I posted works without already being logged into Shibboleth? - WA
+
 #### Verify email is USC email and user has access to it
 
 Does it need to be a USC email? The user might want to use some other account. What are the disadvantages of disallowing non-USC emails? But definitely should add email verification. - WA
 
 I'm just thinking USC would probably not want anyone to log in and see information about their classes, even though anoyone could technically just access the Schedule of Classes API. In the future we could have verification through Shibboleth, which would expediate linking a user to a specific department's web registration page. - GO
+
+If they didn't want it exposed they would have authentication for the API, they're a big, reputable university. I'd say let's not cripple the site for this, but let's try to see if there's a way to authenticate users with Shibboleth at some point in the future. - WA
 
 #### Allow for password resets (could SendGrid be used to handle this and above?)
 
@@ -57,6 +63,14 @@ I think instead of intentionally gimping certain users, which really isn't a gre
 
 I also am for the queue, except we'd have to figure out the best way to handle "signing up" to the queue, because that would essentially produce another rush to be the first to do something. We of course could add some chivalrous means to move up in the queue, like donating money to charity (like the one USC's bookstore is all about). And how would "instant results work"? Overall, it would probably be good to look into the technical costs of running that loop, especially if we were to have a significant portion of the USC student population using the site. - GO
 
+"Instant results" would mean that you got notified as soon as the server found new openings in a class (which is the way it works now). If you didn't pay for these, you'd get added to the queue which would be notified one by one. So the process would look like
+
+Server finds new openings for a class -> sends email to all watching users who are premium -> (5 minute wait) sends email to first free user -> (5 minute wait) sends email to second free user -> etc
+
+We could pledge to donate some portion of the fee to charity, or allow users to pick how much of their money goes to where. 
+
+Yes, it would be good to figure out how much resources N iterations of the loop took with M watched sections and calculate what is affordable/reasonable. - WA
+
 ## Fixes
 
 #### Use GitHub's built-in issue tracking to manage to-dos - WA
@@ -65,11 +79,15 @@ I also am for the queue, except we'd have to figure out the best way to handle "
 
 If/when we do make it open-source, is there some sort of way to protect our code from being used without our permission? Like some license? - GO
 
+That wouldn't be free software. If you want to have this project be "intellectual property", go for it, but I wouldn't feel comfortable working on it.
+
 #### Better sorting/highlighting
 
 Yes, sorting the classes by most-recent updates is a big one. This shouldn't be too hard; we'd want to have a time field in the section entries in Mongo that would just be seconds since the UNIX epoch (e.g. the default result of `time()` in PHP. Then update that entry whenever a class's open seats increase, and sort by that before returning the JSON-ified class list to the homepage. - WA
 
 Going a little further, it might be a good idea to have a notification sound play in the browser whenever a class updates. So users could have the site running in the background. Also, this is a little less necessary and subjective, but having class rectangles that were updated have some distinctive visual identifier, like a bright outline, could also be good. So if a user switches back to the site from another tab, he or she can easily see what changed. - GO
+
+Okay, we could do that with a JS loop on the page and add something into the DB about whether a new update is waiting for each user's sections.
 
 #### More complete class section info in rectangle
 
@@ -79,6 +97,8 @@ How do you mean? - WA
 
 I just meant we should try to identify any more special cases of classes not being found. - GO
 
+Gotcha. - WA
+
 #### 12 hour time instead of military time
 
 ## Other
@@ -86,7 +106,6 @@ I just meant we should try to identify any more special cases of classes not bei
 #### About/info page and help page
 
 #### Create a professional logo (it could just look like one of those generic startup company t-shirts)
-
 Things the logo {c,sh}ould incorporate: registration, adding, watching, updating. Two C's mean some interesting ways to incorporate letters if we want to. - WA
 
 #### Snazzy USC color theme
@@ -108,13 +127,17 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 
 I personally am not interesting in working on a non-free project. First off, the actual code isn't terribly complex, and most people who are driven enough to be copying a site will be able to figure out how to do what we've done in a week or two even if they can't see our actual code. (We figured it out from scratch in 36 hours). But I do think we shouldn't be distributing our PHP until we're sure everything's secure. - WA
 
--I understand your stance on this. I just don't want some other CS guys to make the same thing and have it grow to be more popular. - GO
+I understand your stance on this. I just don't want some other CS guys to make the same thing and have it grow to be more popular. - GO
+
+If someone forks it and makes a better version of our website that users choose, then that's the free market working. - WA
 
 ####  What can we do for SEO (search engine optimization)?
 
 Adding an about page would be the single biggest one. Another is getting an SSL certificate, because Google is starting to penalize unencrypted sites. Finally we'd want to get some links to our site from other reputable sites. - WA
 
 We should start spreading the word to people throughout the school, starting with the CS department, maybe get featured in our newspaper. Ideally we'd get popular through word-of-mouth. - GO
+
+Shit, yeah, that would be cool! - WA
 
 #### Do we have to worry about scalability?
 
@@ -123,3 +146,5 @@ In terms of server beefiness? Yes, our $5 VPS won't cut it, probably, and we'll 
 #### In terms of professionalism, do we want to have a "team" github to store this?
 
 Yes, as above. I'll get a more official, team, private repo set up. - WA
+
+Lots of developments (NPI) here, check the GroupMe chat
