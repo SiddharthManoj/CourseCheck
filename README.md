@@ -10,11 +10,7 @@ The HTTP-facing files are in `http`; these should be copied to the HTTP server's
 
 This is good for UX and also disability accessibility.
 
-#### Delete button for class rectangle
-
-or just click the rectangle to delete? - WA
-
-any kind of delete functionality would be fine - GO
+#### Delete functionality for class rectangle
 
 #### Color coded rectangles based on school (or maybe just different color for each rectangle while maintaing a good color theme)
 
@@ -23,6 +19,8 @@ I'm not sure about filling the page with lots of different colors. If we use a l
 I agree. I do think their should be some differentiator between the class rectangles to some extent. Not too much to overwhelm the user of course. - GO
 
 What about a tint reflecting how recently the seats opened up? So the rectangles would get progressively darker at varying steps. We could do something where maybe a week ago is the darkest and a minute ago is the brightest and do a log scale between them. - WA
+
+If you'd be up to do that then sure. That would also take care of my suggestion for highlighting changes for a class rectangle if a user switches back to our site from another tab or something. - GO
 
 #### Have each class rectangle link to web registration page so users can log in quickly
 
@@ -33,23 +31,19 @@ That could be pretty difficult, but surely possible. In the meantime we could ju
 
 I'm currentl going through hell with my USC account because the web registration made me reset my pin and asked for an 8-character password, but the prompt only allows 6. Could someone see if the link I posted works without already being logged into Shibboleth? - WA
 
-#### Verify email is USC email and user has access to it
+I tried it without being logged in and was directed to the link I posted, which I don't know how to log in to. I just go through my.usc.edu. - GO
 
-Does it need to be a USC email? The user might want to use some other account. What are the disadvantages of disallowing non-USC emails? But definitely should add email verification. - WA
+#### Authenticate users with Shibboleth so we can link each class rectangle to the correct web reg. page
 
-I'm just thinking USC would probably not want anyone to log in and see information about their classes, even though anoyone could technically just access the Schedule of Classes API. In the future we could have verification through Shibboleth, which would expediate linking a user to a specific department's web registration page. - GO
+#### Account management page for password resets, email changes, account deletion, etc.
 
-If they didn't want it exposed they would have authentication for the API, they're a big, reputable university. I'd say let's not cripple the site for this, but let's try to see if there's a way to authenticate users with Shibboleth at some point in the future. - WA
-
-#### Allow for password resets (could SendGrid be used to handle this and above?)
-
-Might be doable using some SG API; otherwise we could just use a PHP script with the SGPHP stuff. We should have an account management page where you can manage email changes, password changes, account deletion - WA
+Might be doable using some SG API; otherwise we could just use a PHP script with the SGPHP stuff. - WA
 
 #### Customer support functionality through email or some other means
 
 Yeah, could just set up admin@coursecheck.me or webmaster@coursecheck.me. Would require setting up Postfix and Dovecot which I could do in the future. - WA
 
-#### ~~Enter key recognition for search bar (Will did it)~~
+As long as we all have access to it then we can all share the workload of handling user's emails. - GO
 
 #### Text message alerts instead of or in addition to email
 
@@ -59,27 +53,17 @@ I *think* we can do this using the email-to-SMS features that most cell provider
 
 #### While we could stil do something along the lines of a queue with regards to the emailing, we could instead monetize a bit and charge users who want faster results, which on our end would just be sleeping the loop less than normal.
 
-I think instead of intentionally gimping certain users, which really isn't a great business model, it would be better to do the queue, where basically free users are informed of the classes maybe 5 minutes after the earliest user in the queue. If the free users want "instant results" (which, of course, aren't quite instant because we aren't running the loop's body nonstop), they can pay some nominal fee for real-time updates. That also makes me think, I wonder how much bandwidth/memory/resources would be consumed if we had the loop on a really short delay (also, we wouldn't want it to be any faster than the SOC API updates). - WA
-
-I also am for the queue, except we'd have to figure out the best way to handle "signing up" to the queue, because that would essentially produce another rush to be the first to do something. We of course could add some chivalrous means to move up in the queue, like donating money to charity (like the one USC's bookstore is all about). And how would "instant results work"? Overall, it would probably be good to look into the technical costs of running that loop, especially if we were to have a significant portion of the USC student population using the site. - GO
-
-"Instant results" would mean that you got notified as soon as the server found new openings in a class (which is the way it works now). If you didn't pay for these, you'd get added to the queue which would be notified one by one. So the process would look like
-
-Server finds new openings for a class -> sends email to all watching users who are premium -> (5 minute wait) sends email to first free user -> (5 minute wait) sends email to second free user -> etc
-
-We could pledge to donate some portion of the fee to charity, or allow users to pick how much of their money goes to where. 
-
-Yes, it would be good to figure out how much resources N iterations of the loop took with M watched sections and calculate what is affordable/reasonable. - WA
+Moved this to a new section in General since monetization is a pretty discussion-worthy topic (but certainly not what's motivating us of course) - GO
 
 ## Fixes
 
 #### Use GitHub's built-in issue tracking to manage to-dos - WA
 
+Does this mean we shouldn't use the README for to-dos? - GO
+
 #### ~~Make a new GHub organization and use a private repo for this. While I'm all for keeping this free and open-source, I think we should still keep development private at least for now.~~ - WA
 
-If/when we do make it open-source, is there some sort of way to protect our code from being used without our permission? Like some license? - GO
-
-That wouldn't be free software. If you want to have this project be "intellectual property", go for it, but I wouldn't feel comfortable working on it.
+It seems to me the goal is to make this site as good as possible, while it's in private development, then when we release it to the masses we make it open-source. By then I imagine we'd be far enough ahead of anyone else that they'd rather just use our awesome site than try to make their own version. It's worth mentioning that I appreciate the open-source ethos and wouldn't mind others utilizing our work to make something else that's cool (like a Chrome extension for Ben). - GO
 
 #### Better sorting/highlighting
 
@@ -91,13 +75,7 @@ Okay, we could do that with a JS loop on the page and add something into the DB 
 
 #### More complete class section info in rectangle
 
-#### Find any given class (would require plenty of testing)
-
-How do you mean? - WA
-
-I just meant we should try to identify any more special cases of classes not being found. - GO
-
-Gotcha. - WA
+#### Identify any remaining class recognition errors apart of the Schedule of Classes API
 
 #### 12 hour time instead of military time
 
@@ -108,11 +86,7 @@ Gotcha. - WA
 #### Create a professional logo (it could just look like one of those generic startup company t-shirts)
 Things the logo {c,sh}ould incorporate: registration, adding, watching, updating. Two C's mean some interesting ways to incorporate letters if we want to. - WA
 
-#### Snazzy USC color theme
-
-I'd vote for pastel-ized cardinal and gold (the full-saturation versions would be a bit gaudy IMO) - WA
-
-I was thinking the same exact thing. - GO
+#### Snazzy pastel-ized cardinal and gold color theme
 
 #### For serious testing we could have the site check local JSON files that we will deliberately change to verify the changes on the site are correct
 
@@ -123,21 +97,12 @@ Yes, we should set up a testing DB as well which pulls from local JSON. In terms
 
 and then when we meet up we can merge our branches after reviewing everyone's code - WA
 
-#### Should we make this code closed-source so no one can just copy our code and make the same thing with some changes?
+#### Search Engine Optimization tactics
 
-I personally am not interesting in working on a non-free project. First off, the actual code isn't terribly complex, and most people who are driven enough to be copying a site will be able to figure out how to do what we've done in a week or two even if they can't see our actual code. (We figured it out from scratch in 36 hours). But I do think we shouldn't be distributing our PHP until we're sure everything's secure. - WA
-
-I understand your stance on this. I just don't want some other CS guys to make the same thing and have it grow to be more popular. - GO
-
-If someone forks it and makes a better version of our website that users choose, then that's the free market working. - WA
-
-####  What can we do for SEO (search engine optimization)?
-
-Adding an about page would be the single biggest one. Another is getting an SSL certificate, because Google is starting to penalize unencrypted sites. Finally we'd want to get some links to our site from other reputable sites. - WA
-
-We should start spreading the word to people throughout the school, starting with the CS department, maybe get featured in our newspaper. Ideally we'd get popular through word-of-mouth. - GO
-
-Shit, yeah, that would be cool! - WA
+About page
+SSL certificate
+Get mentioned on other sites (Daily Trojan, ACM)
+Spread the word on Twitter, Facebook
 
 #### Do we have to worry about scalability?
 
@@ -148,3 +113,13 @@ In terms of server beefiness? Yes, our $5 VPS won't cut it, probably, and we'll 
 Yes, as above. I'll get a more official, team, private repo set up. - WA
 
 Lots of developments (NPI) here, check the GroupMe chat
+
+#### Monetization ideas (consider the toll these would take on the server, etc.)
+
+Priority queue to determine the order and time each email is sent. We'd have to determine how users get into the queue and whether they can move up in the queue through some monetary means (charity).
+
+"Instant results" for a nominal fee. You would get notified as soon as the server found new openings in a class (which is the way it works now). If you didn't pay for these, you'd get added to the queue which would be notified one by one. So the process would look like:
+
+Server finds new openings for a class -> sends email to all watching users who are premium -> (5 minute wait) sends email to first free user -> (5 minute wait) sends email to second free user -> etc
+
+Maybe I'm not understanding this completely, but how would the priority queue differ from instant results, since they both involve emails being sent out at different rates depending on money being spent? Overall, while the price should be low, it shouln't be low enough so that most people have no problem buying it and then the premium option becomes the standard. - GO
