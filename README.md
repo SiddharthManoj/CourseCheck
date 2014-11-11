@@ -116,7 +116,7 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 
 #### Scale up as we get more users
 
-#### Adopt AngularJS to make site more structure and elegant
+#### Adopt AngularJS to make site more structured and elegant
 
 #### Monetization ideas (consider the toll these would take on the server, etc.)
 
