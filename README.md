@@ -48,7 +48,9 @@ I think instead of intentionally gimping certain users, which really isn't a gre
       
 ## Fixes
 
-#### Make a new GHub organization and use a private repo for this. While I'm all for keeping this free and open-source, I think we should still keep development private at least for now. - WA
+#### Use GitHub's built-in issue tracking to manage to-dos - WA
+
+#### ~~Make a new GHub organization and use a private repo for this. While I'm all for keeping this free and open-source, I think we should still keep development private at least for now.~~ - WA
 
 #### Better sorting/highlighting
 
