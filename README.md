@@ -89,10 +89,10 @@ Things the logo {c,sh}ould incorporate: registration, adding, watching, updating
 
 #### Snazzy pastel-ized cardinal and gold color theme
 
-Some nice-looking possible colors
-#E65B5E
-#F8CA8C
-#FA7E73
+Some nice-looking possible colors  
+"#E65B5E"  
+"#F8CA8C"  
+"#FA7E73"
 
 #### Nicer looking JS alerts
 
@@ -115,6 +115,8 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 * Spread the word on Twitter, Facebook
 
 #### Scale up as we get more users
+
+#### Adopt AngularJS to make site more structured and elegant
 
 #### Monetization ideas (consider the toll these would take on the server, etc.)
 
