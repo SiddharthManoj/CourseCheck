@@ -116,6 +116,8 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 
 #### Scale up as we get more users
 
+#### Adopt AngularJS to make site more structured and elegant
+
 #### Monetization ideas (consider the toll these would take on the server, etc.)
 
 Priority queue to determine the order and time each email is sent. We'd have to determine how users get into the queue and whether they can move up in the queue through some monetary means (charity).
