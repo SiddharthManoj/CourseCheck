@@ -29,7 +29,7 @@ Good idea. URL scheme is e.g. `https://camel2.usc.edu/webreg/crsesoffrd.asp?COUR
 That could be pretty difficult, but surely possible. In the meantime we could just have it link to here:
 "https://camel2.usc.edu/webreg/Login.asp". - GO
 
-I'm currentl going through hell with my USC account because the web registration made me reset my pin and asked for an 8-character password, but the prompt only allows 6. Could someone see if the link I posted works without already being logged into Shibboleth? - WA
+I'm currently going through hell with my USC account because the web registration made me reset my pin and asked for an 8-character password, but the prompt only allows 6. Could someone see if the link I posted works without already being logged into Shibboleth? - WA
 
 I tried it without being logged in and was directed to the link I posted, which I don't know how to log in to. I just go through my.usc.edu. - GO
 
