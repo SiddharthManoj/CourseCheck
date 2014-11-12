@@ -54,8 +54,6 @@ I *think* we can do this using the email-to-SMS features that most cell provider
 
 #### Use GitHub's built-in issue tracking to manage to-dos - WA
 
-Does this mean we shouldn't use the README for to-dos? - GO
-
 #### ~~Make a new GHub organization and use a private repo for this. While I'm all for keeping this free and open-source, I think we should still keep development private at least for now.~~ - WA
 
 It seems to me the goal is to make this site as good as possible, while it's in private development, then when we release it to the masses we make it open-source. By then I imagine we'd be far enough ahead of anyone else that they'd rather just use our awesome site than try to make their own version. It's worth mentioning that I appreciate the open-source ethos and wouldn't mind others utilizing our work to make something else that's cool (like a Chrome extension for Ben). - GO
@@ -84,7 +82,7 @@ Playing a sound notification should be easy from what I can see:
 
 #### About/info page and help page
 
-#### Create a professional logo (it could just look like one of those generic startup company t-shirts)
+#### ~~Create a professional logo (it could just look like one of those generic startup company t-shirts)~~
 Things the logo {c,sh}ould incorporate: registration, adding, watching, updating. Two C's mean some interesting ways to incorporate letters if we want to. - WA
 
 #### Snazzy pastel-ized cardinal and gold color theme
@@ -110,7 +108,7 @@ and then when we meet up we can merge our branches after reviewing everyone's co
 #### Search Engine Optimization tactics
 
 * About page  
-* SSL certificate  
+* ~~SSL certificate~~
 * Get mentioned on other sites (Daily Trojan, ACM)  
 * Spread the word on Twitter, Facebook
 
