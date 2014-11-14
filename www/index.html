@@ -47,7 +47,7 @@
 			function logout() {
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "/php/logout.php", true);
-		
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						document.getElementById("postlogin").classList.add("hidden");
@@ -64,7 +64,7 @@
 
 				var un = document.getElementById("un-register").value;
 				var pwd = document.getElementById("pwd-register").value;
-				
+
 				if (pwd != document.getElementById("pwd-verify").value) {
 					alert("Passwords do not match!");
 					return;
@@ -95,7 +95,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/login.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText == "_SUCCESS") {
@@ -114,10 +114,34 @@
 			function search() {
 				if (event.type == "keydown" && event.keyCode != 13) return;
 
+				if(document.getElementById("dept").value === "" || document.getElementById("section").value === ""){
+					console.log("Invalid input");
+					return;
+				}
+
+				for(var i = 0; i < document.getElementById("section").value.length; i++){
+					if(isNaN(parseInt(document.getElementById("section").value[i]))){
+						console.log("Invalid input");
+						return;
+					}
+				};
+				if(isNaN(parseInt(document.getElementById("dept").value)) === false){
+					console.log("Invalid input");
+					return
+				}
+				if(isNaN(parseInt(document.getElementById("section").value))){
+					console.log("Invalid input");
+					return
+				}
+				if(document.getElementById("id").value.length !== 5){
+					console.log("Invalid input");
+					return
+				}
+
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/search.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText == "_SUCCESS") {
@@ -135,7 +159,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "/php/classes.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText != "_FAILURE") {
@@ -154,7 +178,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "/php/classes.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText != "_FAILURE") {
