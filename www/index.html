@@ -114,26 +114,6 @@
 			function search() {
 				if (event.type == "keydown" && event.keyCode != 13) return;
 
-				if(document.getElementById("dept").value === "" || document.getElementById("section").value === ""){
-					console.log("Invalid input");
-					return;
-				}
-
-				for(var i = 0; i < document.getElementById("section").value.length; i++){
-					if(isNaN(parseInt(document.getElementById("section").value[i]))){
-						console.log("Invalid input");
-						return;
-					}
-				};
-				if(isNaN(parseInt(document.getElementById("dept").value)) === false){
-					console.log("Invalid input");
-					return
-				}
-				if(document.getElementById("section").value.length !== 5){
-					console.log("Invalid input");
-					return
-				}
-
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/search.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
