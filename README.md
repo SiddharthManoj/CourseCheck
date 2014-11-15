@@ -32,11 +32,6 @@ Playing a sound notification should be easy from what I can see:
 
 ## Other
 
-#### About/info page and help page
-
-#### ~~Create a professional logo (it could just look like one of those generic startup company t-shirts)~~
-Things the logo {c,sh}ould incorporate: registration, adding, watching, updating. Two C's mean some interesting ways to incorporate letters if we want to. - WA
-
 #### For serious testing we could have the site check local JSON files that we will deliberately change to verify the changes on the site are correct
 
 Yes, we should set up a testing DB as well which pulls from local JSON. In terms of testing, we obviously need a way for everyone to develop simultaneously. We already have the personal HTML folders for each dev (which are symlinked to the HTTP server's active folder); we can further split those into:
