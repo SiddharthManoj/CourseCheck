@@ -74,10 +74,6 @@ Playing a sound notification should be easy from what I can see:
 
 #### Identify any remaining class recognition errors apart of the Schedule of Classes API
 
-#### 12 hour time instead of military time on class rectangle
-
-(http://stackoverflow.com/a/14415768)
-
 ## Other
 
 #### About/info page and help page
