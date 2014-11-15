@@ -187,8 +187,11 @@
 					var infoDiv = document.createElement("div");
 					infoDiv.classList.add("left");
 					var startTime = getFormattedTime(obj[i]["start"]);
-					//infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + getFormattedTime(obj[i]["start"]) + " - " + getFormattedTime(obj[i]["end"]);
-					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + startTime + " - " + endTime;
+					var endTime = getFormattedTime(obj[i]["end"]);
+					console.log(startTime);
+					console.log(endTime);
+					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + getFormattedTime(obj[i]["start"]) + " - " + getFormattedTime(obj[i]["end"]);
+					//infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + startTime + " - " + endTime;
 
 					var avail = parseInt(obj[i]["seats"]) - parseInt(obj[i]["taken"]);
 					var availDiv = document.createElement("div");
