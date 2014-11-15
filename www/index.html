@@ -190,7 +190,7 @@
 					var endTime = getFormattedTime(obj[i]["end"]);
 					console.log(startTime);
 					console.log(endTime);
-					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + (obj[i]["start"] + " - " + obj[i]["end"];
+					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + obj[i]["start"] + " - " + obj[i]["end"];
 					//infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + startTime + " - " + endTime;
 
 					var avail = parseInt(obj[i]["seats"]) - parseInt(obj[i]["taken"]);
