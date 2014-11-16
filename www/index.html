@@ -279,13 +279,39 @@
 			.fix {
 				clear: both;
 			}
+
+			#logout > .vertalign {
+				margin: auto;
+			}
+
+			#logo {
+				float: left;
+				margin-right: 8px;
+			}
+
+			.vertalign {
+				display: table;
+				overflow: hidden;
+			}
+
+			.vertalign > div {
+				display: table-cell;
+				vertical-align: middle;
+			}
 		</style>
 		<title>
 			CourseCheck
 		</title>
 	</head>
 	<body>
-		<h1 id="logout">CourseCheck</h1>
+		<h1 id="logout">
+			<div class="vertalign">
+				<img id="logo" src="/content/logo.svg">
+				<div class="vertalign-inner">
+					CourseCheck
+				</div>
+			</div>
+		</h1>
 		<div id="login">
 			<input id="un-login" class="input" type="text" placeholder="Email">
 			<input id="pwd-login" class="input" type="password" placeholder="Password">
