@@ -47,7 +47,7 @@
 			function logout() {
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "/php/logout.php", true);
-		
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						document.getElementById("postlogin").classList.add("hidden");
@@ -64,7 +64,7 @@
 
 				var un = document.getElementById("un-register").value;
 				var pwd = document.getElementById("pwd-register").value;
-				
+
 				if (pwd != document.getElementById("pwd-verify").value) {
 					alert("Passwords do not match!");
 					return;
@@ -95,7 +95,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/login.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText == "_SUCCESS") {
@@ -117,7 +117,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("POST", "/php/search.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText == "_SUCCESS") {
@@ -135,7 +135,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "/php/classes.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText != "_FAILURE") {
@@ -154,7 +154,7 @@
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "/php/classes.php", true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						if (xmlhttp.responseText != "_FAILURE") {
@@ -168,6 +168,14 @@
 				xmlhttp.send();
 			}
 
+			function getFormattedTime(militaryTime){
+			    var hours24 = parseInt(militaryTime.substring(0, 2),10);
+			    var hours = ((hours24 + 11) % 12) + 1;
+			    var amPm = hours24 > 11 ? 'pm' : 'am';
+			    var minutes = militaryTime.substring(2);
+			    return hours + minutes + amPm;
+			}
+
 			function appendClasses(data) {
 				var obj = JSON.parse(data);
 
@@ -178,8 +186,9 @@
 
 					var infoDiv = document.createElement("div");
 					infoDiv.classList.add("left");
-					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + obj[i]["start"] + " - " + obj[i]["end"];
-
+					var startTime = getFormattedTime(obj[i]["start"]);
+					var endTime = getFormattedTime(obj[i]["end"]);
+					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + startTime + " - " + endTime;
 
 					var avail = parseInt(obj[i]["seats"]) - parseInt(obj[i]["taken"]);
 					var availDiv = document.createElement("div");
