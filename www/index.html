@@ -168,11 +168,11 @@
 				xmlhttp.send();
 			}
 
-			function getFormattedTime(militaryTime){
-			    var hours24 = parseInt(militaryTime.substring(0, 2),10);
+			function getFormattedTime(24hourtime){
+			    var hours24 = parseInt(24hourtime.substring(0, 2),10);
 			    var hours = ((hours24 + 11) % 12) + 1;
 			    var amPm = hours24 > 11 ? 'pm' : 'am';
-			    var minutes = militaryTime.substring(2);
+			    var minutes = 24hourtime.substring(2);
 			    return hours + minutes + amPm;
 			}
 
@@ -182,6 +182,7 @@
 				for (var i = 0; i < obj.length; i++) {
 					var div = document.createElement("div");
 					div.classList.add("class");
+					div.href = "https://camel2.usc.edu/webreg/Login.asp";
 					var text = document.createTextNode(obj[i]["section"]);
 
 					var infoDiv = document.createElement("div");
@@ -211,6 +212,10 @@
 				font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 				max-width: 600px;
 				margin: auto;
+			}
+
+			a{
+				display: block;
 			}
 
 			#logout {
