@@ -168,7 +168,6 @@
 				xmlhttp.send();
 			}
 
-			/*
 			function getFormattedTime(24hourtime){
 			    var hours24 = parseInt(24hourtime.substring(0, 2),10);
 			    var hours = ((hours24 + 11) % 12) + 1;
@@ -176,7 +175,6 @@
 			    var minutes = 24hourtime.substring(2);
 			    return hours + minutes + amPm;
 			}
-			*/
 
 			function appendClasses(data) {
 				var obj = JSON.parse(data);
@@ -184,15 +182,14 @@
 				for (var i = 0; i < obj.length; i++) {
 					var div = document.createElement("div");
 					div.classList.add("class");
-					div.href = "https://camel2.usc.edu/webreg/Login.asp";
 					var text = document.createTextNode(obj[i]["section"]);
 
 					var infoDiv = document.createElement("div");
 					infoDiv.classList.add("left");
-					//var startTime = getFormattedTime(obj[i]["start"]);
-					//var endTime = getFormattedTime(obj[i]["end"]);
-					//infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + startTime + " - " + endTime;
-					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + obj[i]["start"] + " - " + obj[i]["end"];
+					var startTime = getFormattedTime(obj[i]["start"]);
+					var endTime = getFormattedTime(obj[i]["end"]);
+					infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + startTime + " - " + endTime;
+					//infoDiv.innerHTML = obj[i]["name"] + "<br>" + obj[i]["section"] + "<br>" + obj[i]["prof"] + "<br>" + obj[i]["start"] + " - " + obj[i]["end"];
 
 					var avail = parseInt(obj[i]["seats"]) - parseInt(obj[i]["taken"]);
 					var availDiv = document.createElement("div");
