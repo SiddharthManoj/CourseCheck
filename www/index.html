@@ -168,11 +168,11 @@
 				xmlhttp.send();
 			}
 
-			function getFormattedTime(24hourtime) {
-				var hours24 = parseInt(24hourtime.substring(0, 2), 10);
+			function getFormattedTime(militarytime) {
+				var hours24 = parseInt(militarytime.substring(0, 2), 10);
 				var hours = ((hours24 + 11) % 12) + 1;
 				var amPm = hours24 > 11 ? 'pm' : 'am';
-				var minutes = 24hourtime.substring(2);
+				var minutes = militarytime.substring(2);
 				return hours + minutes + amPm;
 			}
 
